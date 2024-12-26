@@ -8,6 +8,6 @@ app <- teal::init(
   ),
   modules = example_module(),
   header = "my life",
-  footer = "good learnin"
+  footer = "good learning"
 )
 shinyApp(app$ui, app$server)
