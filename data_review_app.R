@@ -1,4 +1,5 @@
 library(teal.modules.general)
+library(sparkline)
 
 #ADSL <- pharmaverseadam::adsl
 
@@ -13,13 +14,8 @@ app <- teal::init(
   ),
   modules = teal::modules(
     tm_data_table()
-    # ,
-    # tm_variable_browser()
+    ,
+    tm_variable_browser()
   )
 )
 shinyApp(app$ui, app$server)
-
-
-
-
-
