@@ -6,8 +6,12 @@ app <- teal::init(
     iris = iris, 
     mtcars = mtcars
   ),
-  modules = example_module(),
-  header = "my life",
-  footer = "good learning"
+  modules = teal::modules(
+    tm_data_table(),
+    tm_variable_browser()
+  )
 )
 shinyApp(app$ui, app$server)
+
+
+
