@@ -12,9 +12,8 @@ app <- teal::init(
     verify = TRUE
   ),
   modules = teal::modules(
-    tm_data_table()
-    # ,
-    # tm_variable_browser()
+    tm_data_table(),
+    tm_variable_browser()
   )
 )
 shinyApp(app$ui, app$server)
