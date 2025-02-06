@@ -21,4 +21,56 @@ ADSL <- ADSL %>%
   )
 
 
-ADDT
+ADDTESAVALU <-"DAYS"
+
+arm_ref_comp <-list(
+  TRT01P = list(
+    ref = "Placebo",
+    comp = c("Xanomeline Low Dose","Xanomeline High Dose")
+  )
+)
+
+
+
+app <- init(
+  data = cdisc_data(
+    cdisc_dataset("ADSL", ADSL),
+    cdisc_dataset("ADAE", ADAE),
+    cdisc_dataset("ADDTTE", ADDTTE),
+  ),
+modules=modules(
+  tm_g_km(
+    label= "KM Plot",
+    plot_height = c(600,100,2000),
+    dataname = "ADTTE",
+    arm_var = choices_selected(
+      variable_choices(ADSL,c("TRT01P","TRT01A")),
+      "TRT01P"
+  ),
+  paramcd = choices_selected(
+    value_choices(ADTTE,"PARAMCD","PARAM"),
+    "OS"
+  ),
+  arm_ref_comp = arm_ref_comp,
+  stara_var = choices_selected(
+    variable_choices(ADSL,c("SEX","AGEGR1")),
+    NULL
+  ),
+  facet_var = choices_selected(
+    variable_selected(ADSL,c("SEX","AGEGR1")),
+    NULL
+  )
+)
+)
+)
+shinyApp(app$ui, app$server)
+
+ui <- fluidPage(
+  
+)
+
+server <- function(input, output, session) {
+  
+}
+
+shinyApp(ui, server)
