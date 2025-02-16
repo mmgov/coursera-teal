@@ -31,12 +31,16 @@ arm_ref_comp <-list(
 )
 
 
-
 app <- init(
   data = cdisc_data(
-    cdisc_dataset("ADSL", ADSL),
-    cdisc_dataset("ADAE", ADAE),
-    cdisc_dataset("ADDTTE", ADDTTE),
+    ADSL = example_cdisc_data("ADSL"),
+    ADAE = example_cdisc_data("ADAE"),
+    ADTTE = example_cdisc_data("ADTTE"),
+    code = quote({
+      ADSL <- example_cdisc_data("ADSL")
+      ADAE = example_cdisc_data("ADAE")
+      ADTTE <- example_cdisc_data("ADTTE")
+    })
   ),
 modules=modules(
   tm_g_km(
@@ -52,25 +56,16 @@ modules=modules(
     "OS"
   ),
   arm_ref_comp = arm_ref_comp,
-  stara_var = choices_selected(
+  strata_var = choices_selected(
     variable_choices(ADSL,c("SEX","AGEGR1")),
     NULL
   ),
   facet_var = choices_selected(
-    variable_selected(ADSL,c("SEX","AGEGR1")),
+    variable_choices(ADSL,c("SEX","AGEGR1")),
     NULL
   )
 )
 )
 )
+
 shinyApp(app$ui, app$server)
-
-ui <- fluidPage(
-  
-)
-
-server <- function(input, output, session) {
-  
-}
-
-shinyApp(ui, server)
